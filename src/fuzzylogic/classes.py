@@ -336,13 +336,18 @@ class Set:
         """Multiply with a constant factor, changing all membership values."""
         return Set(lambda x: self.func(x) * n, domain=self)
 
-    def plot(self):
-        """Graph the set in the given domain."""
+    def plot(self,c=None):
+        """Graph the set in the given domain.
+          :param c:   color graphics
+        """
         if self.domain is None:
             raise FuzzyWarning("No domain assigned, cannot plot.")
         R = self.domain.range
         V = [self.func(x) for x in R]
-        plt.plot(R, V)
+        if c== None:
+          plt.plot(R, V)
+        else:
+          plt.plot(R, V,c=c)
 
     def array(self):
         """Return an array of all values for this set within the given domain."""
